@@ -1,5 +1,5 @@
-const json = nodes => {
-  const formatNode = node => {
+const json = (nodes) => {
+  const formatNode = (node) => {
     const base = { key: node.key, type: node.type }
 
     switch (node.type) {

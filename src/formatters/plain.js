@@ -1,8 +1,8 @@
 import _ from 'lodash'
 
-const isComplex = value => _.isObject(value) && !_.isArray(value)
+const isComplex = (value) => _.isObject(value) && !_.isArray(value)
 
-const stringify = value => {
+const stringify = (value) => {
   if (isComplex(value)) return '[complex value]'
   if (value === null) return 'null'
   if (_.isString(value)) return `'${value}'`
@@ -11,7 +11,7 @@ const stringify = value => {
 
 const plain = (nodes, path = []) => {
   return nodes
-    .map(node => {
+    .map((node) => {
       const currentPath = [...path, node.key]
       const propPath = currentPath.join('.')
 

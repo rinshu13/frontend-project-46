@@ -2,7 +2,7 @@ import path from 'path'
 import genDiff from '../src/index.js'
 import parse from '../src/parsers.js'
 
-const getFixturePath = filename => path.join(process.cwd(), '__fixtures__', filename)
+const getFixturePath = (filename) => path.join(process.cwd(), '__fixtures__', filename)
 
 test('plain formatter produces correct output', () => {
   const filepath1 = getFixturePath('file1.json')

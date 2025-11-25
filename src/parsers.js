@@ -2,7 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import yaml from 'js-yaml'
 
-const parse = filepath => {
+const parse = (filepath) => {
   const content = fs.readFileSync(filepath, 'utf8')
   const ext = path.extname(filepath).toLowerCase()
 

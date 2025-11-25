@@ -2,7 +2,7 @@ import path from 'path'
 import genDiff from '../src/index.js'
 import parse from '../src/parsers.js'
 
-const getFixture = f => path.join(process.cwd(), '__fixtures__', f)
+const getFixture = (f) => path.join(process.cwd(), '__fixtures__', f)
 
 test('json formatter produces valid JSON', () => {
   const data1 = parse(getFixture('file1.json'))
@@ -13,7 +13,7 @@ test('json formatter produces valid JSON', () => {
   expect(Array.isArray(parsed)).toBe(true)
   expect(parsed.length).toBeGreaterThan(0)
 
-  const commonNode = parsed.find(n => n.key === 'common')
+  const commonNode = parsed.find((n) => n.key === 'common')
   expect(commonNode).toBeDefined()
   expect(commonNode.type).toBe('nested')
   expect(commonNode.children).toBeDefined()
