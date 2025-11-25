@@ -21,11 +21,13 @@ program
   .description('Compares two configuration files and shows a difference.')
   .version(pkg.version, '-V, --version', 'output the version number')
   .arguments('<filepath1> <filepath2>')
-  .option('-f, --format <type>', 'output format', 'stylish')
-  .action((filepath1, filepath2) => {
+  .option('-f, --format <type>', 'output format', 'stylish') // 'stylish' по умолчанию
+  .action((filepath1, filepath2, options) => {
+    // Приводим пути к абсолютным относительно текущей рабочей директории
     const absolutePath1 = path.resolve(process.cwd(), filepath1);
     const absolutePath2 = path.resolve(process.cwd(), filepath2);
 
+    // Проверка существования файлов
     if (!fs.existsSync(absolutePath1)) {
       console.error(`Error: File not found: ${absolutePath1}`);
       process.exit(1);
@@ -35,9 +37,12 @@ program
       process.exit(1);
     }
 
+    // Парсинг файлов
     const data1 = parse(absolutePath1);
     const data2 = parse(absolutePath2);
-    const result = genDiff(data1, data2);
+
+    // Генерация diff с выбранным форматом
+    const result = genDiff(data1, data2, options.format);
 
     console.log(result);
   })
