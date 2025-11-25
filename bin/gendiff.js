@@ -3,10 +3,9 @@
 import { Command } from 'commander';
 import fs from 'fs';
 import path from 'path';
-import parse from '../src/parsers.js';
 import genDiff from '../src/index.js';
 
-// Загрузка package.json
+// Загружаем package.json из текущей рабочей директории
 let pkg;
 try {
   const packagePath = path.resolve(process.cwd(), 'package.json');
@@ -26,9 +25,11 @@ program
   .arguments('<filepath1> <filepath2>')
   .option('-f, --format <type>', 'output format', 'stylish')
   .action((filepath1, filepath2, options) => {
+    // Преобразуем относительные пути в абсолютные
     const absolutePath1 = path.resolve(process.cwd(), filepath1);
     const absolutePath2 = path.resolve(process.cwd(), filepath2);
 
+    // Проверяем существование файлов
     if (!fs.existsSync(absolutePath1)) {
       console.error(`Error: File not found: ${absolutePath1}`);
       process.exit(1);
@@ -38,10 +39,8 @@ program
       process.exit(1);
     }
 
-    const data1 = parse(absolutePath1);
-    const data2 = parse(absolutePath2);
-    const result = genDiff(data1, data2, options.format);
-
+    // Передаём ТОЛЬКО ПУТИ в genDiff — парсинг происходит внутри библиотеки
+    const result = genDiff(absolutePath1, absolutePath2, options.format);
     console.log(result);
   })
   .helpOption('-h, --help', 'display help for command');
