@@ -1,6 +1,6 @@
 import _ from 'lodash'
 
-const isComplex = (value) => _.isObject(value) && !_.isArray(value)
+const isComplex = value => _.isObject(value) && !_.isArray(value)
 
 const stringify = (value) => {
   if (isComplex(value)) return '[complex value]'
