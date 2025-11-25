@@ -1,10 +1,12 @@
 // src/formatters/index.js
 import stylish from './stylish.js';
 import plain from './plain.js';
+import json from './json.js'; // ← новая строка
 
 const formatters = {
   stylish,
   plain,
+  json, // ← новая строка
 };
 
 const getFormatter = (name) => {
