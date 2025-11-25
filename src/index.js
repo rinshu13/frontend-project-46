@@ -1,6 +1,7 @@
 // src/index.js
 import _ from 'lodash';
 import getFormatter from './formatters/index.js';
+import parse from './parsers.js'; // ← добавляем парсер
 
 const buildDiffTree = (obj1, obj2) => {
   const keys = _.sortBy(_.union(_.keys(obj1), _.keys(obj2)));
@@ -26,8 +27,10 @@ const buildDiffTree = (obj1, obj2) => {
   });
 };
 
-// Основная функция
-const genDiff = (obj1, obj2, formatName = 'stylish') => {
+// Основная функция — принимает ПУТИ к файлам!
+const genDiff = (filepath1, filepath2, formatName = 'stylish') => {
+  const obj1 = parse(filepath1); // ← парсим сами
+  const obj2 = parse(filepath2);
   const tree = buildDiffTree(obj1, obj2);
   const formatter = getFormatter(formatName);
   return formatter(tree);
