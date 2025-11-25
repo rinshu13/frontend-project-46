@@ -5,7 +5,14 @@ import fs from 'fs';
 import path from 'path';
 import parse from '../src/parsers.js';
 import genDiff from '../src/index.js';
-import pkg from '../package.json' with { type: 'json' };
+
+// Путь к текущему файлу
+const __filename = new URL(import.meta.url).pathname;
+const __dirname = path.dirname(__filename);
+
+// Загрузка package.json
+const packagePath = path.join(__dirname, '..', 'package.json');
+const pkg = JSON.parse(fs.readFileSync(packagePath, 'utf8'));
 
 const program = new Command();
 
