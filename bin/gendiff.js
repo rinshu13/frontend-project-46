@@ -2,8 +2,8 @@
 
 import { Command } from 'commander';
 
-// Просто импортируем package.json как модуль — работает в ESM
-import pkg from '../package.json' with { type: "json" };
+// Прямой импорт package.json — работает в Node.js ≥18 с "type": "module"
+import pkg from '../package.json' with { type: 'json' };
 
 const program = new Command();
 
