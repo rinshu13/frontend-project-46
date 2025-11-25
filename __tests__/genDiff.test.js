@@ -1,17 +1,16 @@
-// __tests__/genDiff.test.js
-import path from 'path';
-import genDiff from '../src/index.js';
-import parse from '../src/parsers.js';
+import path from 'path'
+import genDiff from '../src/index.js'
+import parse from '../src/parsers.js'
 
-const getFixturePath = (filename) => path.join(process.cwd(), '__fixtures__', filename);
+const getFixturePath = filename => path.join(process.cwd(), '__fixtures__', filename)
 
 test('compares nested JSON structures', () => {
-  const filepath1 = getFixturePath('file1.json');
-  const filepath2 = getFixturePath('file2.json');
+  const filepath1 = getFixturePath('file1.json')
+  const filepath2 = getFixturePath('file2.json')
 
-  const data1 = parse(filepath1);
-  const data2 = parse(filepath2);
-  const result = genDiff(data1, data2);
+  const data1 = parse(filepath1)
+  const data2 = parse(filepath2)
+  const result = genDiff(data1, data2)
 
   const expected = `{
     common: {
@@ -56,7 +55,7 @@ test('compares nested JSON structures', () => {
         }
         fee: 100500
     }
-}`;
+}`
 
-  expect(result).toBe(expected);
-});
+  expect(result).toBe(expected)
+})
