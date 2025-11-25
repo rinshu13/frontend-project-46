@@ -1,5 +1,4 @@
 // src/formatters/json.js
-import _ from 'lodash';
 
 const json = (nodes) => {
   const formatNode = (node) => {
