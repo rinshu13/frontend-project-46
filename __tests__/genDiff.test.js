@@ -24,3 +24,23 @@ test('compares flat JSON files correctly', () => {
 
   expect(result).toBe(expected);
 });
+
+test('compares flat YAML files correctly', () => {
+  const filepath1 = getFixturePath('file1.yml');
+  const filepath2 = getFixturePath('file2.yml');
+
+  const data1 = parse(filepath1);
+  const data2 = parse(filepath2);
+  const result = genDiff(data1, data2);
+
+  const expected = `{
+  - follow: false
+    host: hexlet.io
+  - proxy: 123.234.53.22
+  - timeout: 50
+  + timeout: 20
+  + verbose: true
+}`;
+
+  expect(result).toBe(expected);
+});
