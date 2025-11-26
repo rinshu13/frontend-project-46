@@ -37,7 +37,7 @@ program
       process.exit(1)
     }
 
-    // Передаём пути — парсинг происходит внутри genDiff
+    // Передаём ПУТИ — парсинг внутри genDiff
     const result = genDiff(absolutePath1, absolutePath2, options.format)
     console.log(result)
   })

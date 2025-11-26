@@ -26,7 +26,7 @@ const buildDiffTree = (obj1, obj2) => {
   })
 }
 
-// ВАЖНО: принимает ПУТИ к файлам, а не объекты!
+// ВАЖНО: принимает ПУТИ к файлам
 const genDiff = (filepath1, filepath2, formatName = 'stylish') => {
   const obj1 = parse(filepath1)
   const obj2 = parse(filepath2)
